@@ -10,7 +10,7 @@ data = np.array([
 ])
 print(data.shape)
 
-# 資料的轉置
+# 資料的轉置 .T
 data = np.array([
     [2, 4, 1],
     [1, 5, 0]
@@ -19,8 +19,10 @@ print(data.shape) # (2, 3)
 print(data.T)
 print(data.T.shape) # (3, 2)
 # 如果對一維資料作轉置，結果會等於原本的資料
+data = np.array([1, 2, 3])
+print(f"一維資料轉置(.T)的結果:\n原始資料: {data}\n轉置後資料: {data.T}")
 
-# 扁平化資料
+# 扁平化資料 .ravel()
 data = np.array([
     [
         [2, 1, 3],[1, 2, 3]
@@ -33,7 +35,7 @@ newData = data.ravel() # .ravel() 方法需要用變數接，不會改變原始�
 print(newData)
 print(newData.shape) # (12,)
 
-# 重塑資料形狀
+# 重塑資料形狀 .reshape
 data = np.array([
     [
         [2, 1, 3],[1, 2, 3]
@@ -59,3 +61,10 @@ print(data)
 data = np.arange(9).reshape(3, 3)
 print(data)
 print(data.T)
+
+a = np.arange(36).reshape((-1, 3, 2))
+print(a)
+# print(a.ravel)
+# print(a.ravel(order = "F"))
+# print(a.reshape((2, 3)))
+# print(a.reshape((2, 3), order = "F"))
