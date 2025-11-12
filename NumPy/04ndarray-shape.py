@@ -35,7 +35,7 @@ newData = data.ravel() # .ravel() 方法需要用變數接，不會改變原始�
 print(newData)
 print(newData.shape) # (12,)
 
-# 重塑資料形狀 .reshape
+# 重塑資料形狀 .reshape()
 data = np.array([
     [
         [2, 1, 3],[1, 2, 3]
@@ -62,9 +62,58 @@ data = np.arange(9).reshape(3, 3)
 print(data)
 print(data.T)
 
-a = np.arange(36).reshape((-1, 3, 2))
+
+# 補充 .reshape() 用法
+# 當賦予資料形狀數值為 -1 時，自動填入未除盡的量
+a = np.arange(18).reshape((-1, 3, 2))
+# 這邊 -1 就會被填入 36/3/2 = 3
+# 也就相當於下面
+b = np.arange(18).reshape((3, 3, 2))
 print(a)
-# print(a.ravel)
-# print(a.ravel(order = "F"))
-# print(a.reshape((2, 3)))
-# print(a.reshape((2, 3), order = "F"))
+print(b)
+
+# 因此如果要把一維橫向資料轉成二維直向，可用.reshape(-1, 1)
+data = np.arange(5)
+c = data.reshape(-1, 1)
+print(c)
+# 這個方法是創建新的陣列，修改新陣列不會影響原陣列
+c[3,0] = 9
+print(c)
+print(data)
+
+# 另一個做法是利用 np.newaxis 新增一個軸 (相當於新增一個維度)
+# 一維變二維
+data = np.arange(5)
+d = data[:, np.newaxis]
+print(d)
+# 二維變三維
+data = np.arange(8).reshape((2, 4))
+print(data)
+'''
+[[0 1 2 3]
+ [4 5 6 7]]
+'''
+e = data[:, np.newaxis, :] # 相當於 e = data.reshape(2, 1, 4)
+print(e)
+'''
+[[[0 1 2 3]]
+
+ [[4 5 6 7]]]
+'''
+f = data[:, :, np.newaxis] # 相當於 e = data.reshape(2, 4, 1)
+print(f)
+'''
+[[[0]
+  [1]
+  [2]
+  [3]]
+
+ [[4]
+  [5]
+  [6]
+  [7]]]
+'''
+# 這個方法屬於切片創建視圖，共享同一塊數據，因此修改視圖會影響原陣列
+f[1, 0, 0] = 8
+print(f)
+print(data)
