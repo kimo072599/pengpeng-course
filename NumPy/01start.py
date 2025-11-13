@@ -1,3 +1,4 @@
+# 安裝 numpy :在終端機輸入 pip install numpy
 # 載入 numpy 套件
 import numpy as np
 # 根據列表建立 ndarray 物件

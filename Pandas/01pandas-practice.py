@@ -1,5 +1,5 @@
 # 名稱不要取作 pandas，否則會和內建模組名稱衝突
-# 安裝 pandas : pip install pandas
+# 安裝 pandas :在終端機輸入 pip install pandas
 # 載入 pandas 模組
 import pandas as pd
 # 建立 Series
@@ -8,6 +8,7 @@ data=pd.Series([20,10,15])
 print(data)
 print("Max", data.max())
 print("Median", data.median())
+print("Min", pd.Series.min(data))
 data=data*2
 print(data)
 data=data==20
